@@ -6,7 +6,7 @@ export default function User(props){
             <div className="card user-item__content">
                 <Link href={`/users/${props.ID}`}>
                     <div className="user-item__image avatar">
-                        <img src={props.Picture} />
+                        <img src={props.Picture} alt="{props.UserName}" />
                     </div>
                     <div className="user-item__info">
                         <h2>{props.UserName}</h2>

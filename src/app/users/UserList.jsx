@@ -8,7 +8,7 @@ export default function UserList(props){
                     <User
                     key={user["Object Id"]}
                     ID={user["Object Id"]}
-                    UserName={user["Display Name"]}
+                    UserName={user["Display name"]}
                     Title={user.Title}
                     Picture={user.Picture}
                     />
