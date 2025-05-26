@@ -19,6 +19,7 @@ export default function UserPage(){
     return(
         //<User ID={12345678} UserName = "Francisco" Title = "JS Dev"/>
         <>
+            <a href="/" className="card user-item__content">Back to Home</a>
             <UserList Users={users} />
         </>
     );

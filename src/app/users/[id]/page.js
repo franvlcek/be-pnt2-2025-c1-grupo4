@@ -1,5 +1,7 @@
 "use client"
 import { useState, useEffect, use } from "react";
+import "../users.css";
+import Link from "next/link";
 
 export default function PageDetail({params}){
     const {id}= use(params);
@@ -16,9 +18,24 @@ export default function PageDetail({params}){
 
     return(
         <>
-            <img src={user.Picture} alt={user.Name} />
-            <h3>{user["Display name"]}</h3>
-            <h2>{user.Title}</h2>
+            <a href="/users" className="card user-item__content">Back to Users</a>
+            
+            <li className="user-item">
+                <div className="card user-item__content">
+                    <Link href="">
+                        <div className="user-item__image avatar">
+                            <img src={user.Picture} alt="{user.UserName}" />
+                        </div>
+                        <div className="user-item__info">
+                            <h2>{user["Display name"]}</h2>
+                            <h3>{user.Title}</h3>
+                            <h3>{user.City}, {user.State}, {user["Country/Region"]}</h3>
+                            <h3>{user["User principal name"]}</h3>
+                            <h3>{user["Phone number"]}</h3>
+                        </div>
+                    </Link>
+                </div>
+            </li>
         </>
     );
 }
