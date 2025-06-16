@@ -1,25 +1,25 @@
 "use client"
 import { useState, useEffect, use } from "react";
-import "../consoles.css";
+//import "../consoles.css";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function PageDetail({params}){
     const {id}= use(params);
-    const [console, setConsole]= useState([]);
+    const [genre, setGenre]= useState([]);
 
     useEffect(()=>{
-        fetch("http://localhost:8080/console")
+        fetch("http://localhost:8080/genre")
         .then((response) => response.json())
         .then((data) => {
-            setConsole(data.message.find(console=>console["id"]==id));
+            setGenre(data.message.find(genre=>genre["id"]==id));
         }).catch(error=>console.log(error));
         
     },[]);
 
     return(
         <>
-            <a href="/consoles" className="card user-item__content">Back to Consoles</a>
+            <a href="/genres" className="card user-item__content">Back to Genres</a>
             
             <li className="user-item">
                 <div className="card user-item__content">
@@ -27,13 +27,13 @@ export default function PageDetail({params}){
                         <div className="user-item__image avatar">
                             <Image
                                 src={`/img/consoleicon.png`}
-                                alt="Console avatar"
+                                alt="Genre avatar"
                                 width={50}
                                 height={100}
                             />
                         </div>
                         <div className="user-item__info">
-                            <h2>{console["name"]}</h2>
+                            <h2>{genre["genreName"]}</h2>
                         </div>
                     </Link>
                 </div>

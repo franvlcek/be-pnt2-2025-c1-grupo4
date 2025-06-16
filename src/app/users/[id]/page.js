@@ -2,6 +2,7 @@
 import { useState, useEffect, use } from "react";
 import "../users.css";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function PageDetail({params}){
     const {id}= use(params);
@@ -24,7 +25,12 @@ export default function PageDetail({params}){
                 <div className="card user-item__content">
                     <Link href="">
                         <div className="user-item__image avatar">
-                            <img src={`/img/user${user["RoleId"]}.png`} alt="{user.UserName}" />
+                            <Image
+                                src={`/img/user${user["RoleId"]}.png`}
+                                alt="User avatar"
+                                width={50}
+                                height={100}
+                            />
                         </div>
                         <div className="user-item__info">
                             <h2>{user["name"]}</h2>

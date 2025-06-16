@@ -2,15 +2,15 @@ import Link from "next/link";
 import "../styles/styles.css";
 import Image from "next/image";
 
-export default function Console(props){
+export default function Genre(props){
     return(
         <li className="user-item">
             <div className="card user-item__content">
-                <Link href={`/consoles/${props.ID}`}>
+                <Link href={`/genres/${props.ID}`}>
                     <div className="user-item__image avatar">
                         <Image
                             src={`/img/consoleicon.png`}
-                            alt="Console avatar"
+                            alt="Genre avatar"
                             width={50}
                             height={100}
                         />
