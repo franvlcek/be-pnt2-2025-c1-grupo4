@@ -1,23 +1,22 @@
 import Link from "next/link";
-import "./users.css";
+import "../styles/styles.css";
 import Image from "next/image";
 
-export default function User(props){
+export default function Console(props){
     return(
         <li className="user-item">
             <div className="card user-item__content">
-                <Link href={`/users/${props.ID}`}>
+                <Link href={`/consoles/${props.ID}`}>
                     <div className="user-item__image avatar">
                         <Image
-                            src={`/img/user${props.Role}.png`}
+                            src={`/img/consoleicon.png`}
                             alt="User avatar"
                             width={50}
                             height={100}
                         />
                     </div>
                     <div className="user-item__info">
-                        <h2>{props.UserName}</h2>
-                        <h3>{props.Email}</h3>
+                        <h2>{props.Name}</h2>
                     </div>
                 </Link>
             </div>

@@ -1,34 +1,33 @@
 "use client"
 import { useState, useEffect, use } from "react";
-import "../users.css";
+import "../consoles.css";
 import Link from "next/link";
 
 export default function PageDetail({params}){
     const {id}= use(params);
-    const [user, setUser]= useState([]);
+    const [console, setConsole]= useState([]);
 
     useEffect(()=>{
-        fetch("http://localhost:8080/user")
+        fetch("http://localhost:8080/console")
         .then((response) => response.json())
         .then((data) => {
-            setUser(data.message.find(user=>user["id"]==id));
+            setConsole(data.message.find(console=>console["id"]==id));
         }).catch(error=>console.log(error));
         
     },[]);
 
     return(
         <>
-            <a href="/users" className="card user-item__content">Back to Users</a>
+            <a href="/consoles" className="card user-item__content">Back to Consoles</a>
             
             <li className="user-item">
                 <div className="card user-item__content">
                     <Link href="">
                         <div className="user-item__image avatar">
-                            <img src={`/img/user${user["RoleId"]}.png`} alt="{user.UserName}" />
+                            <img src={`/img/consoleicon.png`} alt="{console.name}" />
                         </div>
                         <div className="user-item__info">
-                            <h2>{user["name"]}</h2>
-                            <h3>{user["mail"]}</h3>
+                            <h2>{console["name"]}</h2>
                         </div>
                     </Link>
                 </div>
