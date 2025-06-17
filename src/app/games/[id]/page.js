@@ -27,13 +27,13 @@ export default function PageDetail({params}){
     return(
         <>
             <a href="/games" className="card user-item__content">Back to Games</a>
-            
+            <ul>
             <li className="user-item">
                 <div className="card user-item__content">
                     <Link href="">
                         <div className="user-item__image avatar">
                             <Image
-                                src={`/img/consoleicon.png`}
+                                src={`/img/gameicon.png`}
                                 alt="Game avatar"
                                 width={50}
                                 height={100}
@@ -47,6 +47,7 @@ export default function PageDetail({params}){
                     </Link>
                 </div>
             </li>
+            </ul>
         </>
     );
 }

@@ -21,6 +21,9 @@ export default function UserPage(){
         
         <>
             <a href="/" className="card user-item__content">Back to Home</a>
+            <div className="user-item__info">
+                <h2>User List</h2>
+            </div>
             <UserList Users={users} />
         </>
     );

@@ -20,7 +20,7 @@ export default function PageDetail({params}){
     return(
         <>
             <a href="/users" className="card user-item__content">Back to Users</a>
-            
+            <ul>
             <li className="user-item">
                 <div className="card user-item__content">
                     <Link href="">
@@ -39,6 +39,7 @@ export default function PageDetail({params}){
                     </Link>
                 </div>
             </li>
+            </ul>
         </>
     );
 }

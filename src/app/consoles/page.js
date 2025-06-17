@@ -21,6 +21,9 @@ export default function ConsolePage(){
         
         <>
             <a href="/" className="card user-item__content">Back to Home</a>
+            <div className="user-item__info">
+                <h2>Search Games by Console!</h2>
+            </div>
             <ConsoleList Consoles={consoles} />
         </>
     );

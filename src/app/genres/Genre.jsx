@@ -9,7 +9,7 @@ export default function Genre(props){
                 <Link href={`/genres/${props.ID}`}>
                     <div className="user-item__image avatar">
                         <Image
-                            src={`/img/consoleicon.png`}
+                            src={`/img/genreicon.png`}
                             alt="Genre avatar"
                             width={50}
                             height={100}

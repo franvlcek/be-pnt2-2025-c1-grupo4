@@ -18,6 +18,9 @@ export default function GenrePage(){
         
         <>
             <a href="/" className="card user-item__content">Back to Home</a>
+            <div className="user-item__info">
+                <h2>Search Games by Genre!</h2>
+            </div>
             <GenreList Genres={genres} />
         </>
     );

@@ -21,6 +21,9 @@ export default function GamePage(){
         
         <>
             <a href="/" className="card user-item__content">Back to Home</a>
+            <div className="user-item__info">
+                <h2>Our selection of games:</h2>
+            </div>
             <GameList Games={games} />
         </>
     );
