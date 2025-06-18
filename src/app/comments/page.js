@@ -1,16 +1,15 @@
 "use client"
-import Game from "./Game";
-import GameList from "./GameList";
+import CommentList from "./CommentList";
 import { useState, useEffect } from "react";
 
-export default function GamePage(){
-    
-    const [games, setGames] = useState([]);
+export default function CommentPage(){
+   
+    const [comments, setComments] = useState([]);
     useEffect(()=>{
-        fetch("http://localhost:8080/game")
+        fetch("http://localhost:8080/comment")
         .then((response) => response.json())
         .then((data) => {
-            setGames(data.message);
+            setComments(data.message);
         })
         .catch((error) => console.log(error));
     },[]);
@@ -20,9 +19,9 @@ export default function GamePage(){
         <>
             <a href="/" className="card user-item__content">Back to Home</a>
             <div className="user-item__info">
-                <h2>Our selection of games:</h2>
+                <h2>Comments</h2>
             </div>
-            <GameList Games={games} />
+            <CommentList Comments={comments} />
         </>
     );
 }

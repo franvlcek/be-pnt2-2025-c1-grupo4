@@ -3,19 +3,28 @@ import { useState, useEffect, use } from "react";
 import "../users.css";
 import Link from "next/link";
 import Image from "next/image";
+import Comment from "@/app/comments/Comment";
 
 export default function PageDetail({params}){
     const {id}= use(params);
     const [user, setUser]= useState([]);
+    const [comments, setComments]= useState([]);
+    const url = `http://localhost:8080/user/${id}`;
+    let showComments = false;
 
     useEffect(()=>{
-        fetch("http://localhost:8080/user")
+        fetch(url)
         .then((response) => response.json())
         .then((data) => {
-            setUser(data.message.find(user=>user["id"]==id));
+            setUser(data.message);
+            setComments(data.message.Comments);
         }).catch(error=>console.log(error));
         
     },[]);
+
+    if(comments.length>0){
+            showComments = true;
+    }
 
     return(
         <>
@@ -40,6 +49,25 @@ export default function PageDetail({params}){
                 </div>
             </li>
             </ul>
+            { showComments ? (
+                <div className="user-item__info">
+                    <h2>Comments:</h2>
+                </div>
+            ) : (
+                <div className="user-item__info">
+                    <h2>This User has not made any comments yet</h2>
+                </div>
+            )}
+            <ul>
+                {comments.map((comment,index)=>{
+                    return(
+                        <Comment key ={index} ID={comment["id"]} Content = {comment["content"]} 
+                        Game={comment["Game"].gamename} GameLink={comment["GameId"]} />
+                    )
+                })}
+            </ul>
+
+
         </>
     );
 }
