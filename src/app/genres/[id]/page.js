@@ -28,8 +28,6 @@ export default function PageDetail({params}){
 
     return(
         <>
-            <a href="/genres" className="card user-item__content">Back to Genres</a>
-            
             <ul>
             <li className="user-item">
                 <div className="card user-item__content">
@@ -50,13 +48,13 @@ export default function PageDetail({params}){
             </li>
             </ul>
             { showGames ? (
-                <div className="user-item__info">
-                    <h2>{genre["genreName"]} games:</h2>
-                </div>
+                <header className="page-header">
+                    <p>{genre["genreName"]} games:</p>
+                </header>
             ) : (
-                <div className="user-item__info">
-                    <h2>There are no Games for this genre yet</h2>
-                </div>
+                <header className="page-header">
+                    <p>There are no games of this genre yet</p>
+                </header>
             )}
             <ul>
                 {games.map((game,index)=>{

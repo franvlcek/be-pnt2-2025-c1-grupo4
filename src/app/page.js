@@ -1,16 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import "./users/users.css";
+import "./styles/styles.css";
 
 export default function Home() {
   return (
     <div>
-      <a href="/users" className="card user-item__content">Users </a>
-      <a href="/games" className="card user-item__content">Games </a>
-      <a href="/consoles" className="card user-item__content">Consoles </a>
-      <a href="/genres" className="card user-item__content">Game Genres</a>
-      <h1>Home Page
-      </h1>
+    <header className="page-header">
+      <h1>Game Library</h1>
+      <p>Explore the best games by genre and platform</p>
+    </header>
     </div>
   );
 }

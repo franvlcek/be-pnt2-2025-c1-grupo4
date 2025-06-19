@@ -14,6 +14,7 @@ export default function CommentList(props){
                     User = {comment["User"].name}
                     Game = {comment["Game"].gameName}
                     Role = {comment["User"].RoleId}
+                    GameLink = {comment["GameId"]}
                     />
                 );
             })}

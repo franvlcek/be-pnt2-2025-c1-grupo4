@@ -2,6 +2,7 @@
 import Game from "./Game";
 import GameList from "./GameList";
 import { useState, useEffect } from "react";
+import "../styles/styles.css";
 
 export default function GamePage(){
     
@@ -18,10 +19,10 @@ export default function GamePage(){
     return(
         
         <>
-            <a href="/" className="card user-item__content">Back to Home</a>
-            <div className="user-item__info">
-                <h2>Our selection of games:</h2>
-            </div>
+            <header className="page-header">
+                <h1>Games</h1>
+                <p>Our selection of games</p>
+            </header>
             <GameList Games={games} />
         </>
     );

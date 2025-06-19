@@ -2,6 +2,7 @@
 import Genre from "./Genre";
 import GenreList from "./GenreList";
 import { useState, useEffect } from "react";
+import "../styles/styles.css";
 
 export default function GenrePage(){
     const [genres, setGenres] = useState([]);
@@ -17,10 +18,10 @@ export default function GenrePage(){
     return(
         
         <>
-            <a href="/" className="card user-item__content">Back to Home</a>
-            <div className="user-item__info">
-                <h2>Search Games by Genre!</h2>
-            </div>
+            <header className="page-header">
+                <h1>Genres</h1>
+                <p>Search games by Genre!</p>
+            </header>
             <GenreList Genres={genres} />
         </>
     );

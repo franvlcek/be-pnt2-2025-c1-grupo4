@@ -2,6 +2,7 @@
 import Console from "./Console";
 import ConsoleList from "./ConsoleList";
 import { useState, useEffect } from "react";
+import "../styles/styles.css";
 
 export default function ConsolePage(){
     //ACA VA EL FETCH AL BACKEND CON LOS USUARIOS
@@ -20,10 +21,10 @@ export default function ConsolePage(){
     return(
         
         <>
-            <a href="/" className="card user-item__content">Back to Home</a>
-            <div className="user-item__info">
-                <h2>Search Games by Console!</h2>
-            </div>
+            <header className="page-header">
+                <h1>Consoles</h1>
+                <p>Search games by Console!</p>
+            </header>
             <ConsoleList Consoles={consoles} />
         </>
     );

@@ -28,7 +28,6 @@ export default function PageDetail({params}){
 
     return(
         <>
-            <a href="/users" className="card user-item__content">Back to Users</a>
             <ul>
             <li className="user-item">
                 <div className="card user-item__content">
@@ -50,13 +49,13 @@ export default function PageDetail({params}){
             </li>
             </ul>
             { showComments ? (
-                <div className="user-item__info">
-                    <h2>Comments:</h2>
-                </div>
+                <header className="page-header">
+                    <p>Comments by this user:</p>
+                </header>
             ) : (
-                <div className="user-item__info">
-                    <h2>This User has not made any comments yet</h2>
-                </div>
+                <header className="page-header">
+                    <p>This user has not made any comments yet</p>
+                </header>
             )}
             <ul>
                 {comments.map((comment,index)=>{

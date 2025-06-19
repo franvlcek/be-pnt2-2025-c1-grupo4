@@ -34,7 +34,6 @@ export default function PageDetail({params}){
 
     return(
         <>
-            <a href="/games" className="card user-item__content">Back to Games</a>
             <ul>
             <li className="user-item">
                 <div className="card user-item__content">
@@ -57,13 +56,13 @@ export default function PageDetail({params}){
             </li>
             </ul>
             { showComments ? (
-                <div className="user-item__info">
-                    <h2>Comments:</h2>
-                </div>
+                <header className="page-header">
+                    <p>Comments:</p>
+                </header>
             ) : (
-                <div className="user-item__info">
-                    <h2>There are no comments for this game yet</h2>
-                </div>
+                <header className="page-header">
+                    <p>There are no comments for this game yet</p>
+                </header>
             )}
 
             <ul>

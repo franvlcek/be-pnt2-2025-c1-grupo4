@@ -2,6 +2,7 @@
 import User from "./User";
 import UserList from "./UserList";
 import { useState, useEffect } from "react";
+import "../styles/styles.css";
 
 export default function UserPage(){
     //ACA VA EL FETCH AL BACKEND CON LOS USUARIOS
@@ -20,10 +21,10 @@ export default function UserPage(){
     return(
         
         <>
-            <a href="/" className="card user-item__content">Back to Home</a>
-            <div className="user-item__info">
-                <h2>User List</h2>
-            </div>
+            <header className="page-header">
+                <h1>Users</h1>
+                <p>All existing users on this platform, for Admin eyes only </p>
+            </header>
             <UserList Users={users} />
         </>
     );

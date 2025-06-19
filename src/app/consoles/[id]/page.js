@@ -25,8 +25,6 @@ export default function PageDetail({params}){
     }
     return(
         <>
-            <a href="/consoles" className="card user-item__content">Back to Consoles</a>
-            
             <ul>
             <li className="user-item">
                 <div className="card user-item__content">
@@ -47,13 +45,13 @@ export default function PageDetail({params}){
             </li>
             </ul>
             { showGames ? (
-                <div className="user-item__info">
-                    <h2>{console["name"]} games:</h2>
-                </div>
+                <header className="page-header">
+                    <p>{console["name"]} games:</p>
+                </header>
             ) : (
-                <div className="user-item__info">
-                    <h2>There are no Games for this console yet</h2>
-                </div>
+                <header className="page-header">
+                    <p>There are no games for this console yet</p>
+                </header>
             )}
             <ul>
             {games.map((game,index)=>{

@@ -1,6 +1,7 @@
 "use client"
 import CommentList from "./CommentList";
 import { useState, useEffect } from "react";
+import "../styles/styles.css";
 
 export default function CommentPage(){
    
@@ -17,10 +18,10 @@ export default function CommentPage(){
     return(
         
         <>
-            <a href="/" className="card user-item__content">Back to Home</a>
-            <div className="user-item__info">
-                <h2>Comments</h2>
-            </div>
+            <header className="page-header">
+                <h1>Comments</h1>
+                <p>All comments on the platform, for Admin eyes only</p>
+            </header>
             <CommentList Comments={comments} />
         </>
     );
