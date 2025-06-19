@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import "../styles/styles.css";
 
 export default function LoginPage() {
     const [formData, setFormData] = useState({email: "", password: ""});
@@ -10,14 +11,19 @@ export default function LoginPage() {
     
     //TODO: si no es un email o password valido, mostrar mensaje de error
 
+    const loginData = new URLSearchParams();
+    loginData.append("mail",formData.email);
+    loginData.append("pass",formData.password);
     try {
-        const response = await fetch("https://mflixbackend.azurewebsites.net/api/users/login" , 
+        const response = await fetch("http://localhost:8080/user/login", 
             {
                 method: "POST",
-                headers: { "Content-Type": "application/json"}, 
-                body :JSON.stringify({
-                    email: formData.email,
-                    password: formData.password} )
+                headers: { "Content-Type": "application/x-www-form-urlencoded"}, 
+                body : new URLSearchParams({
+                  mail:formData.email,
+                  pass:formData.password,
+                }),
+                credentials:"include",
             }
         ) 
 
@@ -26,9 +32,10 @@ export default function LoginPage() {
         }
         const data = await response.json();
         
-        if(data.token){            
-            localStorage.setItem('token', data.token);
+        if(data.message){            
+            //localStorage.setItem('token', data.message);
             window.location.href = "/games";
+            console.log(localStorage.getItem("token"));
         }
         
 
@@ -64,7 +71,7 @@ export default function LoginPage() {
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label htmlFor="email" className="sr-only">Email</label>
+              <label htmlFor="mail" className="sr-only">Email</label>
               <input
                 id="email"
                 name="email"
@@ -77,7 +84,7 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">Password</label>
+              <label htmlFor="pass" className="sr-only">Password</label>
               <input
                 id="password"
                 name="password"

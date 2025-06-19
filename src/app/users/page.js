@@ -5,9 +5,7 @@ import { useState, useEffect } from "react";
 import "../styles/styles.css";
 
 export default function UserPage(){
-    //ACA VA EL FETCH AL BACKEND CON LOS USUARIOS
-    //ALMACENAR STATE
-    //PASAR A USERLIST
+
     const [users, setUsers] = useState([]);
     useEffect(()=>{
         fetch("http://localhost:8080/user")
