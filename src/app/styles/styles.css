@@ -152,3 +152,36 @@
   margin-left: auto;
   color: white;
 }
+
+.comment-form button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #292929;
+  color: #ffd900;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+  background: #ffd900;
+  color: #292929;
+}
+
+.generic-button{
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #292929;
+  color: #ffd900;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.generic-button:hover{
+  background: #ffd900;
+  color: #292929;
+}

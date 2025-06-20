@@ -68,7 +68,7 @@ export default function LoginPage() {
           </div> )
         }
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="comment-form mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="mail" className="sr-only">Email</label>
@@ -110,7 +110,7 @@ export default function LoginPage() {
           <div className="text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{' '}
-            <a href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <a href="/signup" className="font-medium text-yellow-400 hover:text-indigo-500">
               Sign Up
             </a>
           </p>

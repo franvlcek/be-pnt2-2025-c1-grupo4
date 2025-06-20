@@ -17,15 +17,6 @@ export default function UserPage(){
             window.location.href = "/unauthorized";
         }
     },[user,loading])
-    
-    // fetch("http://localhost:8080/user/me",{
-    //          method: "GET",
-    //          credentials: "include",
-    //      }).then((res)=>res.json()).then((data)=>{
-    //          if(data.message.role !==1){
-    //              window.location.href = "/unauthorized";
-    //          }
-    //      }).catch((error) => console.log(error));
 
     const [users, setUsers] = useState([]);
     useEffect(()=>{
@@ -43,6 +34,8 @@ export default function UserPage(){
             <header className="page-header">
                 <h1>Users</h1>
                 <p>All existing users on this platform, for Admin eyes only </p>
+                <br></br>
+                <a href="/users/create" className="generic-button">Create new User</a>
             </header>
             <UserList Users={users} />
         </>

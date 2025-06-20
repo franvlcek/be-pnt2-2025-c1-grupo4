@@ -37,7 +37,7 @@ export default function PageDetail({params}){
     if(comments.length>0){
             showComments = true;
     }
-
+    
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
@@ -65,9 +65,8 @@ export default function PageDetail({params}){
         } catch (error){
             console.log(error);
         }
-        
     };
-
+      
     return(
         <>
             <ul>
@@ -109,18 +108,18 @@ export default function PageDetail({params}){
                     )
                 })}
             </ul>
-
-                <form className="comment-form" onSubmit={handleSubmit}>
-                    <textarea
-                    value={newComment}
-                    onChange={(e)=>setNewComment(e.target.value)}
-                    placeholder="Leave a comment on this game"
-                    required
-                    />
-                    <button type="submit">Post Comment</button>
-                </form>
-
-
+                {user.role >0 && 
+                
+                    <form className="comment-form" onSubmit={handleSubmit}>
+                        <textarea
+                            value={newComment}
+                            onChange={(e)=>setNewComment(e.target.value)}
+                            placeholder="Leave a comment on this game"
+                            required
+                        />
+                        <button type="submit">Post Comment</button>
+                    </form>
+                }
         </>
     );
 }
