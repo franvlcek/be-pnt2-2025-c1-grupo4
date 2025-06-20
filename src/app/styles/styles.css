@@ -118,6 +118,37 @@
     font-size: 1.1rem;
     color: #666;
   }
-  .redtext {
-    color:red;
-  }
+  .logout-button {
+  background-color: #e74c3c; 
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: auto;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;  
+}
+.login-button {
+  background-color: #0cd916; 
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: auto;
+}
+
+.login-button:hover {
+  background-color: #119217;  
+}
+.login-section{
+  margin-left: auto;
+  color: white;
+}

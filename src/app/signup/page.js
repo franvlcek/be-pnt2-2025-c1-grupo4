@@ -1,13 +1,12 @@
 "use client"
 import { useState } from "react";
 export default function SignUpPage() {
-  // TODO: Obtener los valores de los campos, nombre usuario, email, contraseña
-  // TODO: hacer fetch a: https://mflixbackend.azurewebsites.net/api/users/login
-  // TODO: Redireccionar al Login
-   const [formData, setFormData] = useState({email: "", password: ""});
+  
+   const [formData, setFormData] = useState({name: "", mail: "", pass: ""});
    const [error, setError] = useState("");
-//const error = false;
+
   const handleChange = (e) => {
+    
     const { name, value } = e.target;
     setFormData(prev => ({
         ...prev, 
@@ -19,13 +18,18 @@ export default function SignUpPage() {
     e.preventDefault();
 
     try {
-        const response = await fetch("https://mflixbackend.azurewebsites.net/api/users/register" , 
+      console.log(formData);
+        const response = await fetch("http://localhost:8080/user" , 
             {
                 method: "POST",
-                headers: { "Content-Type": "application/json"}, 
-                body :JSON.stringify({
-                    email: formData.email,
-                    password: formData.password} )
+                headers: { "Content-Type": "application/x-www-form-urlencoded"}, 
+                body : new URLSearchParams({
+                  name:formData.name,
+                  mail:formData.mail,
+                  pass:formData.pass,
+                  RoleId:2,
+                }),
+                credentials:"include",
             }
         ) 
 
@@ -34,9 +38,8 @@ export default function SignUpPage() {
         }
         const data = await response.json();
         
-        if(data.token){            
-            localStorage.setItem('token', data.token);
-            window.location.href = "/games";
+        if(data.success){            
+            window.location.href = "/login";
         }
         
 
@@ -59,43 +62,45 @@ export default function SignUpPage() {
             <span className="block sm:inline">{error}</span>
           </div> )
         }
-        
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label htmlFor="user" className="sr-only">Username</label>
+              <label htmlFor="name" className="sr-only">Username</label>
               <input
-                id="user"
-                name="user"
+                id="name"
+                name="name"
                 type="text"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Username"                                
+                placeholder="Username"
+                onChange={handleChange}                                 
               />
             </div>
             <div>
-              <label htmlFor="email" className="sr-only">Email</label>
+              <label htmlFor="mail" className="sr-only">Email</label>
               <input
-                id="email"
-                name="email"
+                id="mail"
+                name="mail"
                 type="email"
                 autoComplete="email"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email"                
+                placeholder="Email"
+                onChange={handleChange}                 
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">Password</label>
+              <label htmlFor="pass" className="sr-only">Password</label>
               <input
-                id="password"
-                name="password"
+                id="pass"
+                name="pass"
                 type="password"
                 autoComplete="new-password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"                
+                placeholder="Password"
+                onChange={handleChange}                 
               />
             </div>
           </div>

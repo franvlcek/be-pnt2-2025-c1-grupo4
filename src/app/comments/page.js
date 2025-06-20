@@ -4,6 +4,15 @@ import { useState, useEffect } from "react";
 import "../styles/styles.css";
 
 export default function CommentPage(){
+
+    fetch("http://localhost:8080/user/me",{
+            method: "GET",
+            credentials: "include",
+        }).then((res)=>res.json()).then((data)=>{
+            if(data.message.role !==1){
+                window.location.href = "/unauthorized";
+            }
+        }).catch((error) => console.log(error));
    
     const [comments, setComments] = useState([]);
     useEffect(()=>{
