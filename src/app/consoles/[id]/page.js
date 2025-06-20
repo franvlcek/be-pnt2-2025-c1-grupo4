@@ -53,7 +53,7 @@ export default function PageDetail({params}){
                     <p>There are no games for this console yet</p>
                 </header>
             )}
-            <ul>
+            <ul className="users-list">
             {games.map((game,index)=>{
                 return(
                     <Game key ={index} ID={game["id"]} Name = {game["gameName"]} />

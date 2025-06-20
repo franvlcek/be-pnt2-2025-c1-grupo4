@@ -57,7 +57,7 @@ export default function PageDetail({params}){
                     <p>This user has not made any comments yet</p>
                 </header>
             )}
-            <ul>
+            <ul className="users-list">
                 {comments.map((comment,index)=>{
                     return(
                         <Comment key ={index} ID={comment["id"]} Content = {comment["content"]} 

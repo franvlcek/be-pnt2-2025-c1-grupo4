@@ -3,16 +3,29 @@ import User from "./User";
 import UserList from "./UserList";
 import { useState, useEffect } from "react";
 import "../styles/styles.css";
+import { useCurrentUser } from "../login/useCurrentUser";
 
 export default function UserPage(){
-    fetch("http://localhost:8080/user/me",{
-            method: "GET",
-            credentials: "include",
-        }).then((res)=>res.json()).then((data)=>{
-            if(data.message.role !==1){
-                window.location.href = "/unauthorized";
-            }
-        }).catch((error) => console.log(error));
+    const {user, loading}= useCurrentUser();
+    useEffect(()=>{
+        if(loading){
+            return;
+        }
+        if (!user) {
+            window.location.href = "/unauthorized";
+        } else if (user.role !== 1) {
+            window.location.href = "/unauthorized";
+        }
+    },[user,loading])
+    
+    // fetch("http://localhost:8080/user/me",{
+    //          method: "GET",
+    //          credentials: "include",
+    //      }).then((res)=>res.json()).then((data)=>{
+    //          if(data.message.role !==1){
+    //              window.location.href = "/unauthorized";
+    //          }
+    //      }).catch((error) => console.log(error));
 
     const [users, setUsers] = useState([]);
     useEffect(()=>{

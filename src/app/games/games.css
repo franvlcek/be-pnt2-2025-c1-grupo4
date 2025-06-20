@@ -118,3 +118,39 @@
     font-size: 1.1rem;
     color: #666;
   }
+  .comment-form {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.comment-form textarea {
+  width: 100%;
+  height: 100px;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.comment-form button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #292929;
+  color: #ffd900;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+  background: #ffd900;
+  color: #292929;
+}
