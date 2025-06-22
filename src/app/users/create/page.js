@@ -4,6 +4,8 @@ import { useCurrentUser } from "@/app/login/useCurrentUser";
 
 export default function UserCreatePage() {
     const {user, loading}= useCurrentUser();
+    const [roles, setRoles] = useState([]);
+
     useEffect(()=>{
             if(loading){
                 return;
@@ -14,6 +16,13 @@ export default function UserCreatePage() {
                 window.location.href = "/unauthorized";
             }
         },[user,loading])
+
+        useEffect(() => {
+    
+          fetch("http://localhost:8080/role")
+          .then((res) => res.json())
+          .then((data) => setRoles(data.message));
+        }, []);
   
    const [formData, setFormData] = useState({name: "", mail: "", pass: "",role: ""});
    const [error, setError] = useState("");
@@ -116,7 +125,7 @@ export default function UserCreatePage() {
                 onChange={handleChange}                 
               />
             </div>
-            <div>
+            {/* <div>
               <label htmlFor="mail" className="sr-only">Role</label>
               <input
                 id="role"
@@ -130,8 +139,13 @@ export default function UserCreatePage() {
                 placeholder="User Role: 1 for admin, 2 for user"
                 onChange={handleChange}                 
               />
-            </div>
-            
+            </div> */}
+            <select name="role" value={formData.role} onChange={handleChange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" >
+                <option value="">Select Role</option>
+                {roles.map((g) => (
+                <option key={g.id} value={g.id}>{g.roleName}</option>
+                ))}
+            </select>
           </div>
 
           <div>

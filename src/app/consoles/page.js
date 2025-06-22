@@ -3,11 +3,10 @@ import Console from "./Console";
 import ConsoleList from "./ConsoleList";
 import { useState, useEffect } from "react";
 import "../styles/styles.css";
+import { useCurrentUser } from "../login/useCurrentUser";
 
 export default function ConsolePage(){
-    //ACA VA EL FETCH AL BACKEND CON LOS USUARIOS
-    //ALMACENAR STATE
-    //PASAR A USERLIST
+    const {user, loading}= useCurrentUser();
     const [consoles, setConsoles] = useState([]);
     useEffect(()=>{
         fetch("http://localhost:8080/console")
@@ -24,6 +23,7 @@ export default function ConsolePage(){
             <header className="page-header">
                 <h1>Consoles</h1>
                 <p>Search games by Console!</p>
+                {user.role ===1 && <a href="/consoles/create" className="generic-button">Add new Console</a> }
             </header>
             <ConsoleList Consoles={consoles} />
         </>

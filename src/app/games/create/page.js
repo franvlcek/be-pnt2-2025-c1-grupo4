@@ -2,8 +2,12 @@
 import { useState,useEffect } from "react";
 import { useCurrentUser } from "@/app/login/useCurrentUser";
 
-export default function GenreCreatePage() {
+export default function GameCreatePage() {
     const {user, loading}= useCurrentUser();
+    const [genres, setGenres] = useState([]);
+    const [consoles, setConsoles] = useState([]);
+
+
     useEffect(()=>{
             if(loading){
                 return;
@@ -15,8 +19,20 @@ export default function GenreCreatePage() {
             }
         },[user,loading])
   
-   const [formData, setFormData] = useState({genreName: ""});
+   const [formData, setFormData] = useState({gameName: "", ConsoleId: "", GenreId: ""});
    const [error, setError] = useState("");
+
+    useEffect(() => {
+    
+        fetch("http://localhost:8080/genre")
+        .then((res) => res.json())
+        .then((data) => setGenres(data.message));
+
+        fetch("http://localhost:8080/console")
+        .then((res) => res.json())
+        .then((data) => setConsoles(data.message));
+    }, []);
+
 
   const handleChange = (e) => {
     
@@ -32,12 +48,14 @@ export default function GenreCreatePage() {
 
     try {
       console.log(formData);
-        const response = await fetch("http://localhost:8080/genre" , 
+        const response = await fetch("http://localhost:8080/game" , 
             {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded"}, 
                 body : new URLSearchParams({
-                  genreName:formData.genreName,
+                  gameName:formData.gameName,
+                  ConsoleId:formData.ConsoleId,
+                  GenreId:formData.GenreId,
                 }),
                 credentials:"include",
             }
@@ -49,7 +67,7 @@ export default function GenreCreatePage() {
         const data = await response.json();
         
         if(data.success){            
-            window.location.href = "/genres";
+            window.location.href = "/games";
         }
         
 
@@ -63,7 +81,7 @@ export default function GenreCreatePage() {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Add a new Genre
+            Add a new Game
           </h2>
         </div>
         
@@ -76,16 +94,33 @@ export default function GenreCreatePage() {
         <form className="comment-form mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label htmlFor="genreName" className="sr-only">Genre Name</label>
+              <label htmlFor="gameName" className="sr-only">Username</label>
               <input
-                id="genreName"
-                name="genreName"
+                id="gameName"
+                name="gameName"
                 type="text"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Genre Name"
+                placeholder="Game Name"
                 onChange={handleChange}                                 
               />
+            </div>
+            
+            <div>
+            <select name="ConsoleId" value={formData.ConsoleId} onChange={handleChange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" >
+                <option value="">Select Console</option>
+                {consoles.map((c) => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+                ))}
+            </select>
+            </div>
+            <div>
+            <select name="GenreId" value={formData.GenreId} onChange={handleChange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" >
+                <option value="">Select Genre</option>
+                {genres.map((g) => (
+                <option key={g.id} value={g.id}>{g.genreName}</option>
+                ))}
+            </select>
             </div>
           </div>
 
@@ -94,7 +129,7 @@ export default function GenreCreatePage() {
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"              
             >
-              Add Genre
+              Add Game
             </button>
           </div>
         </form>
