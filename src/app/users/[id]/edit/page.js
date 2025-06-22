@@ -1,9 +1,11 @@
 "use client"
 import { useState,useEffect } from "react";
 import { useCurrentUser } from "@/app/login/useCurrentUser";
+import { useParams } from "next/navigation";
 
-export default function UserCreatePage() {
-    const {user, loading}= useCurrentUser();
+export default function UserEditPage() {
+    const {id} = useParams();
+    const {user, loading} = useCurrentUser();
     const [roles, setRoles] = useState([]);
 
     useEffect(()=>{
@@ -24,7 +26,7 @@ export default function UserCreatePage() {
           .then((data) => setRoles(data.message));
         }, []);
   
-   const [formData, setFormData] = useState({name: "", mail: "", pass: "",role: ""});
+   const [formData, setFormData] = useState({name: "",role: ""});
    const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -41,14 +43,12 @@ export default function UserCreatePage() {
 
     try {
       console.log(formData);
-        const response = await fetch("http://localhost:8080/user" , 
+        const response = await fetch(`http://localhost:8080/user/${id}` , 
             {
-                method: "POST",
+                method: "PUT",
                 headers: { "Content-Type": "application/x-www-form-urlencoded"}, 
                 body : new URLSearchParams({
                   name:formData.name,
-                  mail:formData.mail,
-                  pass:formData.pass,
                   RoleId:formData.role,
                 }),
                 credentials:"include",
@@ -61,7 +61,7 @@ export default function UserCreatePage() {
         const data = await response.json();
         
         if(data.success){            
-            window.location.href = "/users";
+            window.location.href = `/users/${id}`;
         }
         
 
@@ -75,7 +75,7 @@ export default function UserCreatePage() {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create a new User
+            Edit User
           </h2>
         </div>
         
@@ -93,13 +93,12 @@ export default function UserCreatePage() {
                 id="name"
                 name="name"
                 type="text"
-                required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Username"
                 onChange={handleChange}                                 
               />
             </div>
-            <div>
+            {/* <div>
               <label htmlFor="mail" className="sr-only">Email</label>
               <input
                 id="mail"
@@ -111,8 +110,8 @@ export default function UserCreatePage() {
                 placeholder="Email"
                 onChange={handleChange}                 
               />
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
               <label htmlFor="pass" className="sr-only">Password</label>
               <input
                 id="pass"
@@ -124,8 +123,8 @@ export default function UserCreatePage() {
                 placeholder="Password"
                 onChange={handleChange}                 
               />
-            </div>
-            <select name="role" value={formData.role} onChange={handleChange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" >
+            </div> */}
+            <select name="role" value={formData.role} onChange={handleChange} className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" >
                 <option value="">Select Role</option>
                 {roles.map((g) => (
                 <option key={g.id} value={g.id}>{g.roleName}</option>
@@ -138,7 +137,7 @@ export default function UserCreatePage() {
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"              
             >
-              Create User
+              Save Changes
             </button>
           </div>
         </form>

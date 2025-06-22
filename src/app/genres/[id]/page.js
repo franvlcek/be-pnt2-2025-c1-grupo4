@@ -4,8 +4,10 @@ import "../genres.css";
 import Link from "next/link";
 import Image from "next/image";
 import Game from "@/app/games/Game";
+import { useCurrentUser } from "@/app/login/useCurrentUser";
 
 export default function PageDetail({params}){
+    const {user,loading}=useCurrentUser();
     const {id}= use(params);
     const [genre, setGenre]= useState([]);
     const [games, setGames]= useState([]);
@@ -46,7 +48,11 @@ export default function PageDetail({params}){
                     </Link>
                 </div>
             </li>
+            <li>
+                {user.role ===1 && <a href={`/genres/${genre.id}/edit`} className="generic-button">Edit</a> }
+            </li>
             </ul>
+            
             { showGames ? (
                 <header className="page-header">
                     <p>{genre["genreName"]} games:</p>

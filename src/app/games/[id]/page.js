@@ -89,6 +89,9 @@ export default function PageDetail({params}){
                     </Link>
                 </div>
             </li>
+            <li>
+                {user.role ===1 && <a href={`/games/${id}/edit`} className="generic-button">Edit</a> }
+            </li>
             </ul>
             { showComments ? (
                 <header className="page-header">
