@@ -13,7 +13,11 @@ export function useCurrentUser() {
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Failed to fetch user");
+          if (res.status === 401 || res.status === 403) {
+            //Do nothing
+          } else {
+            throw new Error("Failed to fetch user");
+          }
         }
         return res.json();
       })

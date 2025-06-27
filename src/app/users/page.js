@@ -20,10 +20,16 @@ export default function UserPage(){
 
     const [users, setUsers] = useState([]);
     useEffect(()=>{
-        fetch("http://localhost:8080/user")
+        fetch("http://localhost:8080/user",{
+            credentials:"include",
+        })
         .then((response) => response.json())
         .then((data) => {
-            setUsers(data.message);
+            if(typeof(data.message)== "string"){
+                //Do nothing, await redirect
+            }else{
+                setUsers(data.message);
+            }
         })
         .catch((error) => console.log(error));
     },[]);
